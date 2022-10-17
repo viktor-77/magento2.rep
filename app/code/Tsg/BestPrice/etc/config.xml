@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <admin_form>
+            <general>
+                <is_enabled>1</is_enabled>
+                <block_name>Best Price</block_name>
+                <min_price>8000</min_price>
+                <max_price>20000</max_price>
+                <work_mode>auto</work_mode>
+            </general>
+        </admin_form>
+    </default>
+</config>

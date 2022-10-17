@@ -1,0 +1,10 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="best_price_products">
+        <column xsi:type="int" name="id" identity="true" padding="10" unsigned="true" nullable="false" comment="id"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" comment="product_id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+</schema>

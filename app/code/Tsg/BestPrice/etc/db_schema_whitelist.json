@@ -1,0 +1,11 @@
+{
+  "best_price_products": {
+    "column": {
+      "id": true,
+      "product_id": true
+    },
+    "constraint": {
+      "PRIMARY": true
+    }
+  }
+}
