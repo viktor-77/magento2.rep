@@ -10,8 +10,8 @@
         <referenceContainer name="content">
             <uiComponent name="best_price_form"/>
         </referenceContainer>
-        <!--        <referenceContainer name="content">-->
-        <!--            <uiComponent name="best_price_products_listing"/>-->
-        <!--        </referenceContainer>-->
+        <referenceContainer name="content">
+            <uiComponent name="best_price_products_listing"/>
+        </referenceContainer>
     </body>
 </page>
