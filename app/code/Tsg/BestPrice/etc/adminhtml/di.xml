@@ -6,18 +6,19 @@
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="best_price_products_listing_data_source" xsi:type="string">
-                    Tsg\BestPrice\Model\ResourceModel\BestPrice\Grid\Collection
+                    Tsg\BestPrice\Model\ResourceModel\GridCollection
                 </item>
             </argument>
         </arguments>
     </type>
 
-    <virtualType name="Tsg\BestPrice\Model\ResourceModel\BestPrice\Grid\Collection"
+    <virtualType name="Tsg\BestPrice\Model\ResourceModel\GridCollection"
                  type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">best_price_products</argument>
-            <argument name="resourceModel" xsi:type="string">Tsg\BestPrice\Model\ResourceModel\BestPrice</argument>
+            <argument name="resourceModel" xsi:type="string">\Tsg\BestPrice\Model\ResourceModel\BestPrice
+            </argument>
         </arguments>
     </virtualType>
-    
+
 </config>
