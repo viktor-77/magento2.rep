@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Tsg_Sales::order_short_details" title="Order short details" translate="title" module="Tsg_Sales"
+             parent="Magento_Sales::sales_operation" sortOrder="10" dependsOnModule="Tsg_Sales"
+             action="sales/order/details" resource="Tsg_Sales::order_short_details"/>
+    </menu>
+</config>

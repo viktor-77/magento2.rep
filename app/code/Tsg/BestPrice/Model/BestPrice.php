@@ -7,7 +7,7 @@ use Magento\Framework\Model\AbstractModel;
 
 class BestPrice extends AbstractModel implements IdentityInterface
 {
-    private const TABLE_NAME = 'best_price_products';
+    private const TABLE_NAME = 'catalog_product_entity';
 
     /**
      * @return void

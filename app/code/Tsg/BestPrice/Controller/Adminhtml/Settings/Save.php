@@ -35,10 +35,9 @@ class Save extends Action
      */
     public function execute()
     {
-        $resultPageFactory = $this->resultRedirectFactory->create();
         $configValue = $this->getRequest()->getPostValue();
         $this->adminData->setData($configValue);
 
-        return $resultPageFactory->setPath('best_price/settings/display');
+        return $this->resultRedirectFactory->create()->setPath('best_price/settings/display');
     }
 }

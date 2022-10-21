@@ -11,6 +11,6 @@ class BestPrice extends AbstractDb
      */
     protected function _construct()
     {
-        $this->_init('best_price_products', 'id');
+        $this->_init('catalog_product_entity', 'entity_id');
     }
 }

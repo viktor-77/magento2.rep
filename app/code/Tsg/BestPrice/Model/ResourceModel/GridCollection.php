@@ -2,28 +2,44 @@
 
 namespace Tsg\BestPrice\Model\ResourceModel;
 
+//use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
+use Magento\Framework\Data\Collection\Db\FetchStrategyInterface as FetchStrategy;
+use Magento\Framework\Data\Collection\EntityFactoryInterface as EntityFactory;
+use Magento\Framework\Event\ManagerInterface as EventManager;
 use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
+use Psr\Log\LoggerInterface as Logger;
 
 class GridCollection extends SearchResult
 {
-    /**
-     * Override _initSelect to add custom columns
-     *
-     * @return void
-     */
-    protected function _initSelect(): void
+    public function __construct(
+        EntityFactory $entityFactory,
+        Logger        $logger,
+        FetchStrategy $fetchStrategy,
+        EventManager  $eventManager,
+        $mainTable,
+        $resourceModel = null,
+        $identifierName = null,
+        $connectionName = null
+    ) {
+//        $this->collectionFactory = $collectionFactory;  CollectionFactory $collectionFactory,
+        parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $mainTable, $resourceModel, $identifierName, $connectionName);
+    }
+
+    protected function _initSelect()
     {
         $this->getSelect()
             ->joinLeft(
-                'catalog_product_entity_decimal',
-                'main_table.product_id = catalog_product_entity_decimal.entity_id',
+                'catalog_product_entity_decimal AS decimal',
+                'main_table.entity_id = decimal.entity_id',
                 'value AS price'
-            )->joinLeft(
-                'catalog_product_entity',
-                'main_table.product_id = catalog_product_entity.entity_id',
-                'sku'
-            );
-
+            )
+            ->joinLeft(
+                'best_price_products AS products',
+                'main_table.entity_id = products.product_id',
+                'product_id'
+            )
+            ->where('decimal.value != ?', null)
+            ->order('price');
         parent::_initSelect();
     }
 }
