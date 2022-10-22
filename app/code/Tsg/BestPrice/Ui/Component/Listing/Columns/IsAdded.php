@@ -27,13 +27,4 @@ class IsAdded extends Column
 
         return parent::prepareDataSource($dataSource);
     }
-
-    public function prepareMassaction()
-    {
-        parent::_prepareMassaction();
-        $this->setMassactionIdField('entity_id');
-        $this->setMassactionIdFilter('entity_id');
-        $this->setMassactionIdFieldOnlyIndexValue(true);
-        $this->getMassactionBlock()->setFormFieldName('sellers');
-    }
 }
