@@ -3,17 +3,16 @@
 namespace Tsg\BestPrice\Controller\Adminhtml\Settings;
 
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
-
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\ResourceConnection;
-use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\Redirect;
-use Magento\Framework\Controller\ResultInterface;
-use Magento\Framework\Exception\CouldNotSaveException;
+use  Magento\Framework\Exception\CouldNotSaveException;
+
 use Magento\Framework\View\Result\PageFactory;
-use  Tsg\BestPrice\Model\Repository;
+use Magento\Ui\Component\MassAction\Filter;
+use Tsg\BestPrice\Model\Repository;
 
 class Grid extends Action
 {
@@ -23,7 +22,8 @@ class Grid extends Action
     protected RequestInterface $request;
     private CollectionFactory $_productCollectionFactory;
     private Repository $repository;
-    private PageFactory $resultPageFactory;
+    protected PageFactory $_resultPageFactory;
+    protected Filter $filter;
 
     /**
      * @param PageFactory $resultPageFactory
@@ -39,33 +39,35 @@ class Grid extends Action
         Repository         $repository,
         CollectionFactory  $collectionFactory,
         RequestInterface   $request,
-        ResourceConnection $resourceConnection
+        ResourceConnection $resourceConnection,
+        Filter             $filter
     ) {
-        $this->resultPageFactory = $resultPageFactory;
+        $this->_resultPageFactory = $resultPageFactory;
         $this->repository = $repository;
         $this->_productCollectionFactory = $collectionFactory;
         $this->request = $request;
         $this->resourceConnection = $resourceConnection;
+        $this->filter = $filter;
         parent::__construct($context);
     }
 
     /**
-     * @return ResponseInterface|Redirect|ResultInterface
+     * @return Redirect
      * @throws CouldNotSaveException
      */
-    public function execute()
+    public function execute(): Redirect
     {
-        $this->saveList($this->getIdsList($this->request->getParam('selected')));
+        $this->saveList($this->getIdsList());
 
         return $this->resultRedirectFactory->create()->setPath('best_price/settings/display');
     }
 
     /**
-     * @param $idsList
+     * @param array $idsList
      * @return void
      * @throws CouldNotSaveException
      */
-    private function saveList($idsList): void
+    private function saveList(array $idsList): void
     {
         $connection = $this->resourceConnection->getConnection();
         $connection->beginTransaction();
@@ -79,12 +81,11 @@ class Grid extends Action
     }
 
     /**
-     * @param $requestIds
      * @return array
      */
-    private function getIdsList($requestIds): array
+    private function getIdsList(): array
     {
-        $idsList = [];
+        $requestIds = $this->request->getParam('selected') ?: $this->request->getParams()['excluded'] ?: [];
         if ($requestIds) {
             foreach ($requestIds as $id) {
                 $idsList[] = ['product_id' => $id];
