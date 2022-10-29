@@ -93,15 +93,11 @@ class Grid extends Action
             foreach ($selectedItems as $id) {
                 $idsList[] = ['product_id' => $id];
             }
-        } elseif ($excludedItems) {
-            foreach ($productList as $product) {
-                if (!in_array($product['entity_id'], $excludedItems, true)) {
-                    $idsList[] = ['product_id' => $product['entity_id']];
-                }
-            }
         } else {
             foreach ($productList as $product) {
-                $idsList[] = ['product_id' => $product['entity_id']];
+                if (!($excludedItems && in_array($product['entity_id'], $excludedItems, true))) {
+                    $idsList[] = ['product_id' => $product['entity_id']];
+                }
             }
         }
 
