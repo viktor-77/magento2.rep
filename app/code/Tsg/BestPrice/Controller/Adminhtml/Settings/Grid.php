@@ -57,7 +57,7 @@ class Grid extends Action
      */
     public function execute(): Redirect
     {
-        $this->saveList($this->getIdsList());
+        $this->saveList($this->getIdsList());                    ///////////////////////
 
         return $this->resultRedirectFactory->create()->setPath('best_price/settings/display');
     }
@@ -85,13 +85,21 @@ class Grid extends Action
      */
     private function getIdsList(): array
     {
-        $requestIds = $this->request->getParam('selected') ?: $this->request->getParams()['excluded'] ?: [];
-        if ($requestIds) {
-            foreach ($requestIds as $id) {
+        $idsList = [];
+        $selectedItems = $this->request->getParam('selected');
+        $excludedItems = ($this->request->getParam('excluded') === "false") ? false : $this->request->getParam('excluded');
+        $productList = $this->_productCollectionFactory->create()->getData();
+        if ($selectedItems) {
+            foreach ($selectedItems as $id) {
                 $idsList[] = ['product_id' => $id];
             }
+        } elseif ($excludedItems) {
+            foreach ($productList as $product) {
+                if (!in_array($product['entity_id'], $excludedItems, true)) {
+                    $idsList[] = ['product_id' => $product['entity_id']];
+                }
+            }
         } else {
-            $productList = $this->_productCollectionFactory->create()->getData();
             foreach ($productList as $product) {
                 $idsList[] = ['product_id' => $product['entity_id']];
             }
