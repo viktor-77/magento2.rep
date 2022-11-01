@@ -8,13 +8,20 @@ class ProductPagination
 {
     private CollectionFactory $_productFactory;
 
+    /**
+     * @param CollectionFactory $productFactory
+     */
     public function __construct(
         CollectionFactory $productFactory
     ) {
         $this->_productFactory = $productFactory;
     }
 
-    public function getProcessedProducts($page): array
+    /**
+     * @param int $page
+     * @return array
+     */
+    public function getProcessedProducts(int $page): array
     {
         $productCollection = $this->_productFactory->create();
         $productCollection->getSelect()->limitPage($page, 10);
