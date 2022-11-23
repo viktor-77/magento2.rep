@@ -51,10 +51,10 @@ class Config
     }
 
     /**
-     * @param $configValue
+     * @param array $configValue
      * @return void
      */
-    public function setData($configValue): void
+    public function setData(array $configValue): void
     {
         foreach ($this->configMap as $configField => $configPath) {
             $this->configWriter->save($configPath, $configValue[$configField]);

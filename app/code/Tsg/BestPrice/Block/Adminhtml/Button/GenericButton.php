@@ -2,42 +2,35 @@
 
 namespace Tsg\BestPrice\Block\Adminhtml\Button;
 
-/**
- * Class GenericButton
- */
+use Magento\Backend\Block\Widget\Context;
+use Magento\Framework\Registry;
+use Magento\Framework\UrlInterface;
+
 class GenericButton
 {
     /**
-     * Url Builder
-     *
-     * @var \Magento\Framework\UrlInterface
+     * @var UrlInterface
      */
-    protected \Magento\Framework\UrlInterface $urlBuilder;
+    protected UrlInterface $urlBuilder;
 
     /**
-     * Registry
-     *
-     * @var \Magento\Framework\Registry
+     * @var Registry
      */
-    protected \Magento\Framework\Registry $registry;
+    protected Registry $registry;
 
     /**
-     * Constructor
-     *
-     * @param \Magento\Backend\Block\Widget\Context $context
-     * @param \Magento\Framework\Registry $registry
+     * @param Context $context
+     * @param Registry $registry
      */
     public function __construct(
-        \Magento\Backend\Block\Widget\Context $context,
-        \Magento\Framework\Registry           $registry
+        Context  $context,
+        Registry $registry
     ) {
         $this->urlBuilder = $context->getUrlBuilder();
         $this->registry = $registry;
     }
 
     /**
-     * Return the synonyms group Id.
-     *
      * @return int|null
      */
     public function getId()
@@ -47,13 +40,11 @@ class GenericButton
     }
 
     /**
-     * Generate url by route and parameters
-     *
      * @param string $route
      * @param array $params
-     * @return  string
+     * @return string
      */
-    public function getUrl($route = '', $params = [])
+    public function getUrl(string $route = '', array $params = []): string
     {
         return $this->urlBuilder->getUrl($route, $params);
     }

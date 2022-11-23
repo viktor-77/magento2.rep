@@ -15,7 +15,7 @@ use Tsg\BestPrice\Service\AdminData\Config;
 
 class Products extends Command
 {
-    private const COMMAND_SYNTAX = 'compute:best_price:products';
+    private const COMMAND_SYNTAX = 'compute:best_price_products';
     private const COMMAND_DESCRIPTION = 'Computes the first hundred products on the site for display in our block';
     private const BEST_PRICE_PRODUCT_QUANTITY = 100;
     private const TABLE_NAME = 'best_price_products';

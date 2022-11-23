@@ -40,7 +40,7 @@ class TestJsonController extends Action
     public function execute()
     {
         return $this->_resultJsonFactory->create()->setData(
-            $this->productPagination->getProcessedProducts($this->_request->getParam('page') ?: 1)
+            $this->productPagination->getProcessedProducts($this->_request->getParam('page') ?? 1)
         );
     }
 }

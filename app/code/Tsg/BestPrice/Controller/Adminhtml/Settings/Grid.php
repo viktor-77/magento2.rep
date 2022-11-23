@@ -7,7 +7,9 @@ use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\ResourceConnection;
+use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\Redirect;
+use Magento\Framework\Controller\ResultInterface;
 use  Magento\Framework\Exception\CouldNotSaveException;
 
 use Magento\Framework\View\Result\PageFactory;
@@ -32,6 +34,7 @@ class Grid extends Action
      * @param CollectionFactory $collectionFactory
      * @param RequestInterface $request
      * @param ResourceConnection $resourceConnection
+     * @param Filter $filter
      */
     public function __construct(
         PageFactory        $resultPageFactory,
@@ -52,12 +55,12 @@ class Grid extends Action
     }
 
     /**
-     * @return Redirect
+     * @return ResponseInterface|Redirect|ResultInterface
      * @throws CouldNotSaveException
      */
-    public function execute(): Redirect
+    public function execute()
     {
-        $this->saveList($this->getIdsList());                    ///////////////////////
+        $this->saveList($this->getIdsList());
 
         return $this->resultRedirectFactory->create()->setPath('best_price/settings/display');
     }

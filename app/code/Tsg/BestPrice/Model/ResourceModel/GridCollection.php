@@ -2,7 +2,6 @@
 
 namespace Tsg\BestPrice\Model\ResourceModel;
 
-//use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\Framework\Data\Collection\Db\FetchStrategyInterface as FetchStrategy;
 use Magento\Framework\Data\Collection\EntityFactoryInterface as EntityFactory;
 use Magento\Framework\Event\ManagerInterface as EventManager;
@@ -21,7 +20,6 @@ class GridCollection extends SearchResult
         $identifierName = null,
         $connectionName = null
     ) {
-//        $this->collectionFactory = $collectionFactory;  CollectionFactory $collectionFactory,
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $mainTable, $resourceModel, $identifierName, $connectionName);
     }
 
