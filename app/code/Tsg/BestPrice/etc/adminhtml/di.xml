@@ -5,19 +5,15 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="catalog_product_entity_listing_data_source" xsi:type="string">
-                    Tsg\BestPrice\Model\ResourceModel\GridCollection
-                </item>
+                <item name="catalog_product_entity_listing_data_source" xsi:type="string">Tsg\BestPrice\Model\ResourceModel\GridCollection</item>
             </argument>
         </arguments>
     </type>
 
-    <virtualType name="Tsg\BestPrice\Model\ResourceModel\GridCollection"
-                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+    <virtualType name="Tsg\BestPrice\Model\ResourceModel\GridCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">catalog_product_entity</argument>
-            <argument name="resourceModel" xsi:type="string">Tsg\BestPrice\Model\ResourceModel\BestPrice
-            </argument>
+            <argument name="resourceModel" xsi:type="string">Tsg\BestPrice\Model\ResourceModel\BestPrice</argument>
         </arguments>
     </virtualType>
 

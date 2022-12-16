@@ -4,14 +4,11 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="order_short_details_listing_data_source" xsi:type="string">
-                    Tsg\Sales\Model\ResourceModel\Order\Grid\Collection
-                </item>
+                <item name="order_short_details_listing_data_source" xsi:type="string">Tsg\Sales\Model\ResourceModel\Order\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
-    <virtualType name="Tsg\Sales\Model\ResourceModel\Order\Grid\Collection"
-                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+    <virtualType name="Tsg\Sales\Model\ResourceModel\Order\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">order_short_details</argument>
             <argument name="resourceModel" xsi:type="string">Tsg\Sales\Model\ResourceModel\Order</argument>
