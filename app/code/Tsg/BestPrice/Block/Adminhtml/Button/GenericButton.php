@@ -8,14 +8,7 @@ use Magento\Framework\UrlInterface;
 
 class GenericButton
 {
-    /**
-     * @var UrlInterface
-     */
     protected UrlInterface $urlBuilder;
-
-    /**
-     * @var Registry
-     */
     protected Registry $registry;
 
     /**
@@ -25,13 +18,14 @@ class GenericButton
     public function __construct(
         Context  $context,
         Registry $registry
-    ) {
+    )
+    {
         $this->urlBuilder = $context->getUrlBuilder();
         $this->registry = $registry;
     }
 
     /**
-     * @return int|null
+     * @return null
      */
     public function getId()
     {
