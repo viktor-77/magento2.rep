@@ -12,12 +12,12 @@ class Config
     private ScopeConfigInterface $scopeConfig;
     private WriterInterface $configWriter;
     private TypeListInterface $cacheTypeList;
-    private array $configMap = [
-        'is_enabled' => 'admin_form/general/is_enabled',
-        'block_name' => 'admin_form/general/block_name',
-        'min_price' => 'admin_form/general/min_price',
-        'max_price' => 'admin_form/general/max_price',
-        'work_mode' => 'admin_form/general/work_mode',
+    private array $bestPriceAttributesPath = [
+        'is_enabled' => 'best_price_form/general/is_enabled',
+        'block_name' => 'best_price_form/general/block_name',
+        'min_price' => 'best_price_form/general/min_price',
+        'max_price' => 'best_price_form/general/max_price',
+        'work_mode' => 'best_price_form/general/work_mode',
     ];
 
     /**
@@ -29,7 +29,8 @@ class Config
         ScopeConfigInterface $scopeConfig,
         WriterInterface      $configWriter,
         TypeListInterface    $cacheTypeList
-    ) {
+    )
+    {
         $this->scopeConfig = $scopeConfig;
         $this->configWriter = $configWriter;
         $this->cacheTypeList = $cacheTypeList;
@@ -40,24 +41,24 @@ class Config
      */
     public function getData(): array
     {
-        $result = [];
-        foreach ($this->configMap as $configField => $configPath) {
-            $result[$configField] = $this->scopeConfig->getValue(
-                $configPath,
+        $productAttributes = [];
+        foreach ($this->bestPriceAttributesPath as $attributeName => $attributeSystemConfigPath) {
+            $productAttributes[$attributeName] = $this->scopeConfig->getValue(
+                $attributeSystemConfigPath,
                 ScopeInterface::SCOPE_STORE
             );
         }
-        return $result;
+        return $productAttributes;
     }
 
     /**
      * @param array $configValue
      * @return void
      */
-    public function setData(array $configValue): void
+    public function setData(array $productAttributes): void
     {
-        foreach ($this->configMap as $configField => $configPath) {
-            $this->configWriter->save($configPath, $configValue[$configField]);
+        foreach ($this->bestPriceAttributesPath as $attributeName => $attributeSystemConfigPath) {
+            $this->configWriter->save($attributeSystemConfigPath, $productAttributes[$attributeName]);
         }
 
         $this->cacheTypeList->cleanType('config');

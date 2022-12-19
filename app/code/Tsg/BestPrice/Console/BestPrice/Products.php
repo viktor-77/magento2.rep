@@ -19,6 +19,8 @@ class Products extends Command
     private const COMMAND_DESCRIPTION = 'Computes the first hundred products in best price';
     private const BEST_PRICE_PRODUCT_QUANTITY = 100;
     private const TABLE_NAME = 'best_price_products';
+    private const SUCCESS_MESSAGE = 'Success';
+    private const ERROR_MESSAGE = 'Error';
 
     private Config $adminConfig;
     private CollectionFactory $_productCollectionFactory;
@@ -36,7 +38,8 @@ class Products extends Command
         CollectionFactory  $productCollectionFactory,
         Repository         $repository,
         ResourceConnection $connection
-    ) {
+    )
+    {
         $this->adminConfig = $adminConfig;
         $this->_productCollectionFactory = $productCollectionFactory;
         $this->repository = $repository;
@@ -64,25 +67,25 @@ class Products extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $exitCode = 0;
-
         $connection = $this->connection->getConnection();
         $connection->beginTransaction();
         try {
             $connection->delete(self::TABLE_NAME);
-            $this->repository->save($this->getSortedProductCollection());
+            $this->repository->save($this->getProductsFilteredByPrice());
             $connection->commit();
+            $output->writeln(self::SUCCESS_MESSAGE);
         } catch (Exception $e) {
             $connection->rollBack();
+            $output->writeln(self::ERROR_MESSAGE);
             throw new CouldNotSaveException(__($e->getMessage()));
         }
-
         return $exitCode;
     }
 
     /**
      * @return array
      */
-    private function getSortedProductCollection(): array
+    private function getProductsFilteredByPrice(): array
     {
         $adminData = $this->adminConfig->getData();
         $minPrice = $adminData['min_price'];
@@ -99,7 +102,6 @@ class Products extends Command
         foreach ($productCollection as $product) {
             $result[] = ['product_id' => $product->getId()];
         }
-
         return $result;
     }
 }

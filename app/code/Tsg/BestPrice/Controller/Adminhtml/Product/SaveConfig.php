@@ -1,6 +1,6 @@
 <?php
 
-namespace Tsg\BestPrice\Controller\Adminhtml\Settings;
+namespace Tsg\BestPrice\Controller\Adminhtml\Product;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -12,7 +12,7 @@ use Tsg\BestPrice\Service\AdminData\Config;
 
 //use Magento\Framework\Data\Form\FormKey\Validator;
 //save form data
-class Save extends Action
+class SaveConfig extends Action
 {
     private Config $adminData;
 
@@ -25,7 +25,8 @@ class Save extends Action
         Context     $context,
         PageFactory $resultPageFactory,
         Config      $adminData
-    ) {
+    )
+    {
         $this->adminData = $adminData;
         parent::__construct($context);
     }
@@ -35,9 +36,9 @@ class Save extends Action
      */
     public function execute()
     {
-        $configValue = $this->getRequest()->getPostValue();
-        $this->adminData->setData($configValue);
+        $bestPriceProductAttributes = $this->getRequest()->getPostValue();
+        $this->adminData->setData($bestPriceProductAttributes);
 
-        return $this->resultRedirectFactory->create()->setPath('best_price/settings/display');
+        return $this->resultRedirectFactory->create()->setPath('best_price/product/index');
     }
 }

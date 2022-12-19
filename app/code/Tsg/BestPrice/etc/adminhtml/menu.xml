@@ -3,6 +3,6 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="Tsg_BestPrice::form" title="Best Price" module="Tsg_BestPrice"
-             sortOrder="11" resource="Tsg_BestPrice::form" action="best_price/settings/display"/>
+             sortOrder="11" resource="Tsg_BestPrice::form" action="best_price/product/index"/>
     </menu>
 </config>

@@ -27,7 +27,8 @@ class TestJsonController extends Action
         Context           $context,
         RequestInterface  $request,
         ProductPagination $productPagination
-    ) {
+    )
+    {
         parent::__construct($context);
         $this->_resultJsonFactory = $resultJsonFactory;
         $this->_request = $request;

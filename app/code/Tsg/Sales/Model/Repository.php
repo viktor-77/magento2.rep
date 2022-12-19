@@ -4,18 +4,19 @@ namespace Tsg\Sales\Model;
 
 use Magento\Framework\Exception\CouldNotSaveException;
 use Tsg\Sales\Api\Order\RepositoryInterface;
-use Tsg\Sales\Model\ResourceModel\Order as OrderResource;
+use Tsg\Sales\Model\ResourceModel\Order as OrderResourceModel;
 
 class Repository implements RepositoryInterface
 {
-    private OrderResource $orderResource;
+    private OrderResourceModel $orderResource;
 
     /**
-     * @param OrderResource $orderResource
+     * @param OrderResourceModel $orderResource
      */
     public function __construct(
-        OrderResource $orderResource
-    ) {
+        OrderResourceModel $orderResource
+    )
+    {
         $this->orderResource = $orderResource;
     }
 

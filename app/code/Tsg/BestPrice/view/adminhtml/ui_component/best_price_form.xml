@@ -13,7 +13,7 @@
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
         <item name="buttons" xsi:type="array">
-            <item name="save" xsi:type="string">Tsg\BestPrice\Block\Adminhtml\Button\SaveButton</item>
+            <item name="save" xsi:type="string">Tsg\BestPrice\Block\Adminhtml\Button\SaveParameters</item>
         </item>
     </argument>
     <dataSource name="best_price_form_data_source">
@@ -24,7 +24,7 @@
             <argument name="requestFieldName" xsi:type="string">id</argument>
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="submit_url" xsi:type="url" path="*/*/save"/>
+                    <item name="submit_url" xsi:type="url" path="*/*/saveconfig"/>
                 </item>
             </argument>
         </argument>

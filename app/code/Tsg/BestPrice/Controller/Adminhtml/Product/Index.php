@@ -1,6 +1,6 @@
 <?php
 
-namespace Tsg\BestPrice\Controller\Adminhtml\Settings;
+namespace Tsg\BestPrice\Controller\Adminhtml\Product;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
@@ -9,7 +9,7 @@ use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 
-class Display extends Action
+class Index extends Action
 {
     protected PageFactory $resultPageFactory;
 
@@ -20,7 +20,8 @@ class Display extends Action
     public function __construct(
         Context     $context,
         PageFactory $resultPageFactory
-    ) {
+    )
+    {
         $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context);
     }

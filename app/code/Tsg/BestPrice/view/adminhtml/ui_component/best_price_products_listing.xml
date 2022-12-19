@@ -52,7 +52,7 @@
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">save</item>
                         <item name="label" xsi:type="string" translate="true">Save</item>
-                        <item name="url" xsi:type="url" path="best_price/settings/grid"/>
+                        <item name="url" xsi:type="url" path="best_price/product/saveproduct"/>
                         <item name="confirm" xsi:type="array">
                             <item name="title" xsi:type="string" translate="true">Title</item>
                             <item name="message" xsi:type="string" translate="true">Are you sure?</item>

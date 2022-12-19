@@ -1,6 +1,6 @@
 <?php
 
-namespace Tsg\BestPrice\Controller\Adminhtml\Settings;
+namespace Tsg\BestPrice\Controller\Adminhtml\Product;
 
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\Framework\App\Action\Action;
@@ -10,13 +10,13 @@ use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Controller\ResultInterface;
-use  Magento\Framework\Exception\CouldNotSaveException;
-
+use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Ui\Component\MassAction\Filter;
+use Tsg\BestPrice\Controller\Adminhtml\Product\Exception;
 use Tsg\BestPrice\Model\Repository;
 
-class Grid extends Action
+class SaveProduct extends Action
 {
     private const TABLE_NAME = 'best_price_products';
 
@@ -44,7 +44,8 @@ class Grid extends Action
         RequestInterface   $request,
         ResourceConnection $resourceConnection,
         Filter             $filter
-    ) {
+    )
+    {
         $this->_resultPageFactory = $resultPageFactory;
         $this->repository = $repository;
         $this->_productCollectionFactory = $collectionFactory;
@@ -62,7 +63,7 @@ class Grid extends Action
     {
         $this->saveList($this->getIdsList());
 
-        return $this->resultRedirectFactory->create()->setPath('best_price/settings/display');
+        return $this->resultRedirectFactory->create()->setPath('best_price/product/index');
     }
 
     /**

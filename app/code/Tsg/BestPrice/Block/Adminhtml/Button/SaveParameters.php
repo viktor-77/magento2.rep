@@ -4,7 +4,7 @@ namespace Tsg\BestPrice\Block\Adminhtml\Button;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
-class SaveButton extends GenericButton implements ButtonProviderInterface
+class SaveParameters extends GenericButton implements ButtonProviderInterface
 {
     /**
      * @return array
