@@ -22,11 +22,9 @@ class SaveConfig extends Action
      * @param Config $adminData
      */
     public function __construct(
-        Context     $context,
-        PageFactory $resultPageFactory,
-        Config      $adminData
-    )
-    {
+        Context $context,
+        Config  $adminData
+    ) {
         $this->adminData = $adminData;
         parent::__construct($context);
     }

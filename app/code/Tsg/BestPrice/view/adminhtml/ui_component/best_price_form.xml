@@ -14,6 +14,7 @@
         <item name="template" xsi:type="string">templates/form/collapsible</item>
         <item name="buttons" xsi:type="array">
             <item name="save" xsi:type="string">Tsg\BestPrice\Block\Adminhtml\Button\SaveParameters</item>
+            <item name="save and compute" xsi:type="string">Tsg\BestPrice\Block\Adminhtml\Button\SaveAndCompute</item>
         </item>
     </argument>
     <dataSource name="best_price_form_data_source">
