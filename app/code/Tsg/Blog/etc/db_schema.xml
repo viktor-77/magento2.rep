@@ -1,0 +1,14 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="blog_details">
+        <column xsi:type="int" name="id" identity="true" padding="10" unsigned="true" nullable="false" comment="id"/>
+        <column xsi:type="text" name="thumbnail" nullable="false" comment="thumbnail"/>
+        <column xsi:type="text" name="title" nullable="false" comment="title"/>
+        <column xsi:type="varchar" name="short_text" length="255" nullable="false" comment="short_text"/>
+        <column xsi:type="text" name="categories" nullable="false" comment="categories"/>
+        <column xsi:type="text" name="tags" nullable="false" comment="tags"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+</schema>
